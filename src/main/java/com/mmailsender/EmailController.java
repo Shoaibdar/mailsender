@@ -23,7 +23,7 @@ public class EmailController {
 	private EmailService emailService;
 
 	@GetMapping("/test")
-	public String sendEmail() {
+	public String test() {
 		return "Working...";
 	}
 
@@ -37,7 +37,7 @@ public class EmailController {
 	}
 
 	@GetMapping("/send")
-	public void main(String[] args) throws IOException {
+	public void send() throws IOException {
 
 		final String username = "shoaibahmad400outlook.com";
 		final String password = "Mathematics@425";
