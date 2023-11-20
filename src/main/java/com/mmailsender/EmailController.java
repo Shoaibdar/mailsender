@@ -27,14 +27,14 @@ public class EmailController {
 		return "Working...";
 	}
 
-	@GetMapping("/send-email")
-	public void sendEmail() {
+	// @GetMapping("/send-email")
+	// public void sendEmail() {
 		
-		Context context = new Context();
-		context.setVariable("message", "this is a template email!");
+	// 	Context context = new Context();
+	// 	context.setVariable("message", "this is a template email!");
 
-		emailService.sendTemplateEmail("shoaibdar418@gmail.com", "Subject", "email-template", context);
-	}
+	// 	emailService.sendTemplateEmail("shoaibdar418@gmail.com", "Subject", "email-template", context);
+	// }
 
 	@GetMapping("/send")
 	public void send() throws IOException {
