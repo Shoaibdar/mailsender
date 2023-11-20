@@ -19,8 +19,8 @@ import javax.mail.internet.MimeMessage;
 @Controller
 public class EmailController {
 
-	@Autowired
-	private EmailService emailService;
+	// @Autowired
+	// private EmailService emailService;
 
 	@GetMapping("/test")
 	public String test() {
