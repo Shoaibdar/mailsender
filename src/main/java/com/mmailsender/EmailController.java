@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.thymeleaf.context.Context;
+//import org.thymeleaf.context.Context;
 
 import java.io.IOException;
 import java.util.Properties;
@@ -16,7 +16,7 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-@Controller
+@RestController
 public class EmailController {
 
 	// @Autowired
@@ -36,11 +36,28 @@ public class EmailController {
 	// 	emailService.sendTemplateEmail("shoaibdar418@gmail.com", "Subject", "email-template", context);
 	// }
 
+	@GetMapping("/sendtextemail")
+	public String sendPlainTextEmail(Model model) {
+		String from = "darshoaib49@gmail.com";
+		String to = "shoaibdar418@gmail.com";
+
+		SimpleMailMessage message = new SimpleMailMessage();
+		message.setFrom(from);
+		message.setTo(to);
+		message.setSubject("This is a plain text email");
+		message.setText("Hello guys! This is a plain text email.");
+
+		mailSender.send(message);
+
+		model.addAttribute("message", "A plain text email has been sent");
+		return "result";
+	}
+
 	@GetMapping("/send")
-	public void send() throws IOException {
+	public void sendOutlook() throws IOException {
 
 		final String username = "shoaibahmad400outlook.com";
-		final String password = "Mathematics@425";
+		final String password = "SHOAIBdar@425";
 
 		Properties props = new Properties();
 		props.put("mail.smtp.auth", "true");
@@ -70,4 +87,17 @@ public class EmailController {
 			throw new RuntimeException(e);
 		}
 	}
+
+	@GetMapping("send/textmail")
+	public void sendTextEmail() {
+		SimpleMailMessage message = new SimpleMailMessage();
+		message.setTo("shoaibdar418@gmail.com");
+		message.setSubject("subject");
+		message.setText("body");
+
+		mailSender.send(message);
+	}
+	
+	
+
 }
