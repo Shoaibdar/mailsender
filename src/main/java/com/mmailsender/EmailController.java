@@ -5,8 +5,10 @@ import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 //import org.thymeleaf.context.Context;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Properties;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -15,26 +17,37 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.swing.JOptionPane;
+
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.ui.Model;
+import org.springframework.stereotype.Service;
 
 @RestController
 public class EmailController {
 
-	// @Autowired
-	// private EmailService emailService;
+//	@Autowired
+//	private EmailService emailService;
+
+	@Autowired
+	private JavaMailSender mailSender;
+
+//	@GetMapping("/send-email")
+//	public void sendEmail() {
+//
+//		Context context = new Context();
+//		context.setVariable("message", "this is a template email!");
+//
+//		emailService.sendTemplateEmail("shoaibdar418@gmail.com", "Subject", "email-template", context);
+//	}
 
 	@GetMapping("/test")
 	public String test() {
-		return "Working...";
+		return "working";
 	}
-
-	// @GetMapping("/send-email")
-	// public void sendEmail() {
-		
-	// 	Context context = new Context();
-	// 	context.setVariable("message", "this is a template email!");
-
-	// 	emailService.sendTemplateEmail("shoaibdar418@gmail.com", "Subject", "email-template", context);
-	// }
 
 	@GetMapping("/sendtextemail")
 	public String sendPlainTextEmail(Model model) {
@@ -100,4 +113,5 @@ public class EmailController {
 	
 	
 
+	
 }
