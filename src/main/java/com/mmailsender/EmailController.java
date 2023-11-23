@@ -7,6 +7,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 //import org.thymeleaf.context.Context;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.mail.*;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.Properties;
@@ -67,38 +72,30 @@ public class EmailController {
 	}
 
 	@GetMapping("/send")
-	public void sendOutlook() throws IOException {
+	public void sendOutlook() throws throws AddressException, MessagingException {
+	        Properties props = new Properties();
+	        props.put("mail.smtp.auth", "true");
+	        props.put("mail.smtp.starttls.enable", "true");
+	        props.put("mail.smtp.host", "outlook.office365.com");
+	        props.put("mail.smtp.port", 587);
+	
+	        Session session = Session.getInstance(props, new Authenticator() {
+	            protected PasswordAuthentication getPasswordAuthentication() {
+	                return new PasswordAuthentication("Test.OlamDirectMailer@olamnet.com", "5r53'B56BbK{t~9");
+	            }
+	        });
+	
+	       // try {
+	            javax.mail.Message messageMail = new MimeMessage(session);
+	            messageMail.setFrom(new InternetAddress("Test.OlamDirectMailer@olamnet"));
+	            messageMail.setRecipients(javax.mail.Message.RecipientType.TO, InternetAddress.parse("shoaibdar418@gmail.com"));
+	            messageMail.setSubject("subject");
+	            messageMail.setText("body");
+	
+	            Transport.send(messageMail);
+	
+	            System.out.println("Email sent successfully!");
 
-		final String username = "shoaibahmad400outlook.com";
-		final String password = "SHOAIBdar@425";
-
-		Properties props = new Properties();
-		props.put("mail.smtp.auth", "true");
-		props.put("mail.smtp.starttls.enable", "true");
-		props.put("mail.smtp.host", "outlook.office365.com");
-		props.put("mail.smtp.port", "587");
-
-		Session session = Session.getInstance(props, new javax.mail.Authenticator() {
-			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication(username, password);
-			}
-		});
-
-		try {
-
-			Message message = new MimeMessage(session);
-			message.setFrom(new InternetAddress("shoaibahmad400outlook.com"));
-			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("shoaibdar418@gmail.com"));
-			message.setSubject("Test");
-			message.setText("HI");
-
-			Transport.send(message);
-
-			System.out.println("Done");
-
-		} catch (MessagingException e) {
-			throw new RuntimeException(e);
-		}
 	}
 
 	@GetMapping("send/textmail")
