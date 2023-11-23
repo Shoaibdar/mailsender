@@ -87,7 +87,7 @@ public class EmailController {
 	
 	       // try {
 	            javax.mail.Message messageMail = new MimeMessage(session);
-	            messageMail.setFrom(new InternetAddress("Test.OlamDirectMailer@olamnet"));
+	            messageMail.setFrom(new InternetAddress("Test.OlamDirectMailer@olamnet.com"));
 	            messageMail.setRecipients(javax.mail.Message.RecipientType.TO, InternetAddress.parse("shoaibdar418@gmail.com"));
 	            messageMail.setSubject("subject");
 	            messageMail.setText("body");
