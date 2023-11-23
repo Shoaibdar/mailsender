@@ -72,7 +72,7 @@ public class EmailController {
 	}
 
 	@GetMapping("/send")
-	public void sendOutlook() throws throws AddressException, MessagingException {
+	public void sendOutlook() throws AddressException, MessagingException {
 	        Properties props = new Properties();
 	        props.put("mail.smtp.auth", "true");
 	        props.put("mail.smtp.starttls.enable", "true");
