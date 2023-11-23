@@ -94,18 +94,7 @@ public class EmailController {
 	            //messageMail.setText("body");
 		     try {
 			//String htmlContent = new String(Files.readAllBytes(Paths.get("/templates/email-template.html")));
-			messageMail.setContent("<html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Email Template</title>
-</head>
-<body>
-    <h1>This is an HTML email</h1>
-    <p>It contains some <b>formatted</b> text.</p>
-</body>
-</html>
-", "text/html");
+			messageMail.setContent("<h1>This is an HTML email</h1><p>It contains some <b>formatted</b> text.</p>", text/html");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
