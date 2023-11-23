@@ -90,8 +90,9 @@ public class EmailController {
 	            messageMail.setFrom(new InternetAddress("Test.OlamDirectMailer@olamnet.com"));
 	            messageMail.setRecipients(javax.mail.Message.RecipientType.TO, InternetAddress.parse("shoaibdar418@gmail.com"));
 	            messageMail.setSubject("subject");
-	            messageMail.setText("body");
-	
+	            //messageMail.setText("body");
+		    String htmlContent = new String(Files.readAllBytes(Paths.get("templates/email-template.html")));
+	            message.setContent(htmlContent, "text/html");
 	            Transport.send(messageMail);
 	
 	            System.out.println("Email sent successfully!");
