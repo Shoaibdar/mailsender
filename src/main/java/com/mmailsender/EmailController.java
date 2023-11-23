@@ -93,7 +93,7 @@ public class EmailController {
 	            messageMail.setSubject("subject");
 	            //messageMail.setText("body");
 		     try {
-			String htmlContent = new String(Files.readAllBytes(Paths.get("templates/email-template.html")));
+			String htmlContent = new String(Files.readAllBytes(Paths.get("/templates/email-template.html")));
 				  messageMail.setContent(htmlContent, "text/html");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
