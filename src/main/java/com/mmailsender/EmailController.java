@@ -6,7 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 //import org.thymeleaf.context.Context;
 import org.springframework.web.bind.annotation.RestController;
-
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import javax.mail.*;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
