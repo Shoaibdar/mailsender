@@ -44,8 +44,8 @@ public class EmailController {
 
 //	@Autowired
 //	private EmailService emailService;
-
-	ResourceLoader resourceLoader = new ResourceLoader();
+        @Autowired
+	ResourceLoader resourceLoader;// = new ResourceLoader();
 
 	@Autowired
 	private JavaMailSender mailSender;
