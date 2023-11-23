@@ -92,8 +92,13 @@ public class EmailController {
 	            messageMail.setRecipients(javax.mail.Message.RecipientType.TO, InternetAddress.parse("shoaibdar418@gmail.com"));
 	            messageMail.setSubject("subject");
 	            //messageMail.setText("body");
-		    String htmlContent = new String(Files.readAllBytes(Paths.get("templates/email-template.html")));
-	            message.setContent(htmlContent, "text/html");
+		     try {
+			String htmlContent = new String(Files.readAllBytes(Paths.get("templates/email-template.html")));
+				  messageMail.setContent(htmlContent, "text/html");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	            Transport.send(messageMail);
 	
 	            System.out.println("Email sent successfully!");
