@@ -32,11 +32,20 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.ui.Model;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+import java.io.InputStream;
+
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
+import java.nio.charset.StandardCharsets;
+
 @RestController
 public class EmailController {
 
 //	@Autowired
 //	private EmailService emailService;
+
+	ResourceLoader resourceLoader = new ResourceLoader();
 
 	@Autowired
 	private JavaMailSender mailSender;
@@ -73,7 +82,7 @@ public class EmailController {
 	}
 
 	@GetMapping("/send")
-	public void sendOutlook() throws AddressException, MessagingException {
+	public void sendOutlook() throws AddressException, MessagingException. throws IOException {
 	        Properties props = new Properties();
 	        props.put("mail.smtp.auth", "true");
 	        props.put("mail.smtp.starttls.enable", "true");
@@ -92,7 +101,10 @@ public class EmailController {
 	            messageMail.setRecipients(javax.mail.Message.RecipientType.TO, InternetAddress.parse("shoaibdar418@gmail.com"));
 	            messageMail.setSubject("subject");
 	            //messageMail.setText("body");
-		    messageMail.setContent("<h1>This is an HTML email</h1><p>It contains some <b>formatted</b> text.</p>", "text/html");
+		       Resource resource = resourceLoader.getResource("classpath:email-templates.html");
+                       InputStream inputStream = resource.getInputStream();
+                       String htmlContent = new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
+		    messageMail.setContent(htmlContent, "text/html");
 	            Transport.send(messageMail);
 	
 	            System.out.println("Email sent successfully!");
