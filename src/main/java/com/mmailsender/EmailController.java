@@ -105,6 +105,7 @@ public class EmailController {
                     InputStream inputStream = resource.getInputStream();
                     String htmlContent = new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
 		    htmlContent = htmlContent.replace("${name}", "John Doe");
+		    System.out.println("************************" + htmlContent);
 		    messageMail.setContent(htmlContent, "text/html");
 	            Transport.send(messageMail);
 	
