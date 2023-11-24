@@ -9,7 +9,7 @@
     <title>Email Template</title>
 </head>
 <body>
-    <h1>This is an HTML email</h1>
+    <h1>This is an HTML email ${name}</h1>
     <p>It contains some <b>formatted</b> text.</p>
 </body>
 </html>
