@@ -101,9 +101,10 @@ public class EmailController {
 	            messageMail.setRecipients(javax.mail.Message.RecipientType.TO, InternetAddress.parse("shoaibdar418@gmail.com"));
 	            messageMail.setSubject("subject");
 	            //messageMail.setText("body");
-		       Resource resource = resourceLoader.getResource("classpath:email-template.ftl");
-                       InputStream inputStream = resource.getInputStream();
-                       String htmlContent = new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
+		    Resource resource = resourceLoader.getResource("classpath:email-template.ftl");
+                    InputStream inputStream = resource.getInputStream();
+                    String htmlContent = new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
+		    htmlContent = htmlContent.replace("${name}", "John Doe");
 		    messageMail.setContent(htmlContent, "text/html");
 	            Transport.send(messageMail);
 	
