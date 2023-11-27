@@ -91,7 +91,7 @@ public class EmailController {
 	
 	        Session session = Session.getInstance(props, new Authenticator() {
 	            protected PasswordAuthentication getPasswordAuthentication() {
-	                return new PasswordAuthentication("Test.OlamDirectMailer@olamnet.com", "5r53'B56BbK{t~9");
+	                return new PasswordAuthentication("mailid", "password");
 	            }
 	        });
 	
